@@ -1,23 +1,19 @@
-import {Route, Routes} from 'react-router-dom'
 import { Container } from 'reactstrap';
-import Alterar from './components/Alterar';
-import Criar from './components/Criar';
+import AppRoutes from './components/AppRoutes';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Lista from './components/Lista';
+import DeckContext from './contexts/DeckContext';
 
 function App() {
   return (
     <div className='App'>
+      <DeckContext>
         <Header />
         <Container>
-          <Routes>
-            <Route path='/' exact element={<Lista />}/>
-            <Route path='/adicionarDeck' element={<Criar />}/>
-            <Route path='/alterarDeck' element={<Alterar />} />
-          </Routes>
+          <AppRoutes />
         </Container>
         <Footer />
+      </DeckContext>
     </div>
   );
 }
