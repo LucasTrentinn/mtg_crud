@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import { Container } from 'reactstrap';
 import Alterar from './components/Alterar';
 import Criar from './components/Criar';
@@ -9,20 +9,15 @@ import Lista from './components/Lista';
 function App() {
   return (
     <div className='App'>
-      <Router>
         <Header />
-        {/* <Lista /> */}
-        {/* <Criar/> */}
-        {/* <Alterar/> */}
         <Container>
           <Routes>
-            <Route path='/' exact component={Lista}/>
-            <Route path='/criarDeck' component={Criar}/>
-            <Route path='/alterar' component={Alterar} />
+            <Route path='/' exact element={<Lista />}/>
+            <Route path='/adicionarDeck' element={<Criar />}/>
+            <Route path='/alterarDeck' element={<Alterar />} />
           </Routes>
         </Container>
         <Footer />
-      </Router> 
     </div>
   );
 }
