@@ -27,3 +27,5 @@ router.delete('/:id', (req, res) => {
   Deck.consultar(req.params.id).deletar()
   res.status(200).send('OK')
 })
+
+module.exports = router
