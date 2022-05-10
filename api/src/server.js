@@ -4,13 +4,12 @@ const bodyParser =  require('body-parser')
 const { join } = require('path')
 const cors = require('cors')
 const porta = 3001
-const Modelo = require('./framework/Modelo')
+
 
 // Rotas
 const decks = require('./routes/deckRotas')
-const cartas = require('./routes/cartaRotas')
-
-Modelo.dir = join(__dirname, '..', 'json')
+// const cartas = require('./routes/cartaRotas')
+const { sequelize } = require('./models')
 
 // App
 const app = express()
@@ -23,8 +22,10 @@ app.get('', (req, res) => {
 })
 
 app.use('/decks', decks)
-app.use('/cartas', cartas)
+// app.use('/cartas', cartas)
 
-app.listen(porta, () => {
-  console.log(`Conectado à porta ${porta}.`)
+sequelize.sync({logging:true}).then((value) => {
+  app.listen(porta, () => {
+    console.log(`Conectado à porta ${porta}.`)
+  })
 })
