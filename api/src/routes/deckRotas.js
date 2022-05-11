@@ -11,6 +11,15 @@ router.post('/', async (req, res) => {
   res.status(200).send(await Deck.create(req.body))
 })
 
+router.delete('/', async (req, res) => {
+  await Deck.destroy({
+    truncate: true,
+    restartIdentity: true
+  })
+  res.status(200).send('OK')
+})
+
+
 router.get('/:id', async (req, res) => {
   res.send(await Deck.findByPk(req.params.id))
 })
