@@ -7,7 +7,7 @@ module.exports.User = sequelize.define('User', {
   birthday: DataTypes.DATE,
 });
 
-module.exports.Deck = sequelize.define('Deck', {
+ const Deck = sequelize.define('Deck', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -16,7 +16,7 @@ module.exports.Deck = sequelize.define('Deck', {
   nome: DataTypes.STRING
 })
 
-module.exports.Carta = sequelize.define('Carta', {
+const Carta = sequelize.define('Carta', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -34,4 +34,9 @@ module.exports.Carta = sequelize.define('Carta', {
   quantidade: DataTypes.INTEGER.UNSIGNED
 })
 
+Deck.hasMany(Carta)
+Carta.belongsTo(Deck)
+
+module.exports.Carta = Carta;
+module.exports.Deck = Deck
 module.exports.sequelize = sequelize
