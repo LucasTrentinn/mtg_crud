@@ -1,4 +1,5 @@
 import React, { Component, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Button, Row, Table } from 'reactstrap'
 import { Context } from "../contexts/DeckContext";
 
@@ -12,16 +13,17 @@ export default class Lista extends Component {
   render() {
     let decks = this.context.decks
 
-    if(!decks)
-      return(
+    if (!decks)
+      return (
         <div>aaa</div>
       );
     return (
       <div>
-      
         <h2 className="text-center" style={{ padding: '1em' }}> Lista de Decks </h2>
         <div style={{ textAlign: 'left' }}>
-          <Button className="btn btn-success"> Adicionar Deck </Button>
+          <Link to='/adicionarDeck'>
+            <Button className="btn btn-success"> Adicionar Deck </Button>
+          </Link>
         </div>
         <Row>
           <Table striped bordered responsive hover>
@@ -35,8 +37,10 @@ export default class Lista extends Component {
                 <tr>
                   <td> {deck.nome} </td>
                   <td>
-                    <button className="btn btn-primary"> Atualizar </button>
-                    <button style={{ marginLeft: '1em' }} className='btn btn-danger'> Deletar </button>
+                    <Link to='/alterarDeck'>
+                      <button className="btn btn-primary"> Atualizar </button>
+                    </Link>
+                    <button style={{ marginLeft: '1em' }} className='btn btn-danger' onClick={() => this.context.deletarDeck(deck.id) && window.location.reload()}> Deletar </button>
                   </td>
                 </tr>
               ))}

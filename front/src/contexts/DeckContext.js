@@ -9,12 +9,21 @@ export default function DeckContext({children}) {
   const consultarTodos = async () => {
     const res = await api.get('/decks')
     setDecks(res.data)
-    console.log(decks)
+  }
+
+  const adicionarDeck = async (event) => {
+    const res = await api.post('/decks')
+    setDecks(res.data)
+    console.log(res.data)
+  }
+
+  const deletarDeck =  async (id) => {
+    await api.delete(`/decks/${id}`)
   }
 
   return(
     <div>
-      <Context.Provider value={{decks, consultarTodos}}>
+      <Context.Provider value={{decks, consultarTodos, adicionarDeck, deletarDeck}}>
         {children}
       </Context.Provider>
     </div>
