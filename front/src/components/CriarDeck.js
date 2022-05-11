@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Card, CardBody, Col, Container, Form, FormGroup, Row } from "reactstrap";
 import { Context } from "../contexts/DeckContext";
-
+import { Link } from 'react-router-dom'
 
 export default class Criar extends Component {
   static contextType = Context;
@@ -24,8 +24,10 @@ export default class Criar extends Component {
                       <label>Nome do Deck:</label>
                       <input name="name" className='form-control'></input>
                     </FormGroup>
-                    <Button type="submit" className="btn btn-success" onClick={() => this.context.adicionarDeck()} >Save</Button>
-                    <Button className='btn btn-danger'>Cancel</Button>
+                    <Button type="submit" className="btn btn-success" onClick={() => this.context.adicionarDeck()}>Save</Button>
+                    <Link to='/'>
+                      <Button className='btn btn-danger'>Cancel</Button>
+                    </Link>
                   </Form>
                 </CardBody>
               </Col>
