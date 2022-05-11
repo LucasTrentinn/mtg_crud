@@ -12,7 +12,7 @@ export default class ListaCartas extends Component {
 
   render() {
     let cartas = this.context.cartas
-
+    
     if (!cartas)
       return (
         <div>Erro: Cartas não puderam ser lidas.</div>
@@ -21,7 +21,7 @@ export default class ListaCartas extends Component {
       <div>
         <h2 className="text-center" style={{ padding: '1em' }}> Lista de Cartas</h2>
         <div style={{ textAlign: 'left' }}>
-          <Link to='/'>
+          <Link to='/criarCarta'>
             <Button className="btn btn-success"> Adicionar Carta </Button>
           </Link>
         </div>
@@ -30,20 +30,30 @@ export default class ListaCartas extends Component {
             <thead>
               <tr>
                 <th> Nome </th>
+                <th> Edição </th>
+                <th> Idioma </th>
+                <th> Foil </th>
+                <th> Preço </th>
+                <th> Quantidade </th>
               </tr>
             </thead>
             <tbody>
-              {cartas.map((carta) => {
-                <tr>
+              {cartas.map((carta) => (
+                <tr key={carta.id}>
                   <td> {carta.nome} </td>
+                  <td> {carta.edicao} </td>
+                  <td> {carta.idioma} </td>
+                  <td> {carta.foil ? "Sim" : "Não"} </td>
+                  <td> {carta.preco.toLocaleString('pr-BR',{style: 'currency', currency: 'BRL'})} </td>
+                  <td> {carta.quantidade} </td>
                   <td>
-                    <Link to='/'>
+                    <Link to='/alterarCarta'>
                       <button className="btn btn-primary"> Atualizar Carta </button>
                     </Link>
-                    <button style={{marginLeft: '1em'}} className='btn btn-danger'> Deletar </button>
+                    <button style={{ marginLeft: '1em' }} className='btn btn-danger' onClick={() => this.context.deletarCarta(carta.id) && window.location.reload()}> Deletar </button>
                   </td>
                 </tr>
-              })}
+              ))}
             </tbody>
           </Table>
         </Row>

@@ -34,13 +34,12 @@ export default class ListaDeck extends Component {
             </thead>
             <tbody>
               {decks.map((deck) => (
-                <tr>
+                <tr key={deck.id}>
                   <td>
                     <Link to={`/deck/${deck.id}`}>
                       { deck.nome }
                     </Link>
                   </td>
-
                   <td>
                     <Link to='/alterarDeck'>
                       <button className="btn btn-primary"> Atualizar Nome </button>

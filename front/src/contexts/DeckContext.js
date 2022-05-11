@@ -11,8 +11,8 @@ export default function DeckContext({children}) {
     setDecks(res.data)
   }
 
-  const adicionarDeck = async () => {
-    const res = await api.post('/decks')
+  const adicionarDeck = async (name) => {
+    const res = await api.post('/decks', {nome: name})
     setDecks(res.data)
   }
 
