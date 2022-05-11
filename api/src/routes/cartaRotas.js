@@ -1,30 +1,38 @@
 // /deck/:id
 const express = require('express')
-const Carta = require('../db/Carta')
+const { Carta } = require('../models')
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send(Carta.listar())
+router.get('/', async (req, res) => {
+  res.send(await Carta.findAll())
 })
 
-router.post('/', (req, res) => {
-  let carta = new Carta().assign(req.body)
-  carta.salvar()
-  res.status(200).send(carta)
+router.post('/', async (req, res) => {
+  res.status(200).send(await Carta.create(req.body))
 })
 
-router.get('/:id', (req, res) => {
-  res.send(Carta.consultar(req.params.id))
+router.delete('/', async (req, res) => {
+  await Carta.destroy({
+    truncate: true,
+    restartIdentity: true
+  })
+  res.status(200).send('OK')
 })
 
-router.put('/:id', (req, res) => {
-  let carta = Carta.consultar(req.params.id).assign(req.body)
-  carta.salvar()
+
+router.get('/:id', async (req, res) => {
+  res.send(await Carta.findByPk(req.params.id))
+})
+
+router.put('/:id', async (req, res) => {
+  let carta = await Carta.findByPk(req.params.id)
+  carta.set(req.body)
+  await carta.save()
   res.send(carta)
 })
 
-router.delete('/:id', (req, res) => {
-  Carta.consultar(req.params.id).deletar()
+router.delete('/:id', async (req, res) => {
+  (await Carta.findByPk(req.params.id)).destroy()
   res.status(200).send('OK')
 })
 

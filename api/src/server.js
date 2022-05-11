@@ -8,7 +8,7 @@ const porta = 3001
 
 // Rotas
 const decks = require('./routes/deckRotas')
-// const cartas = require('./routes/cartaRotas')
+const cartas = require('./routes/cartaRotas')
 const { sequelize } = require('./models')
 
 // App
@@ -22,7 +22,7 @@ app.get('', (req, res) => {
 })
 
 app.use('/decks', decks)
-// app.use('/cartas', cartas)
+app.use('/cartas', cartas)
 
 sequelize.sync({logging:true}).then((value) => {
   app.listen(porta, () => {
