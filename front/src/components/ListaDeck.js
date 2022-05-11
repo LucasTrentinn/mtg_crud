@@ -1,10 +1,10 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Row, Table } from 'reactstrap'
-import { Context } from "../contexts/DeckContext";
+import { ContextDeck } from "../contexts/DeckContext";
 
-export default class Lista extends Component {
-  static contextType = Context;
+export default class ListaDeck extends Component {
+  static contextType = ContextDeck;
 
   componentDidMount() {
     this.context.consultarTodos()
@@ -15,7 +15,7 @@ export default class Lista extends Component {
 
     if (!decks)
       return (
-        <div>aaa</div>
+        <div>Erro: Decks não puderam ser lidos.</div>
       );
     return (
       <div>
@@ -35,10 +35,15 @@ export default class Lista extends Component {
             <tbody>
               {decks.map((deck) => (
                 <tr>
-                  <td> {deck.nome} </td>
+                  <td>
+                    <Link to={`/deck/${deck.id}`}>
+                      { deck.nome }
+                    </Link>
+                  </td>
+
                   <td>
                     <Link to='/alterarDeck'>
-                      <button className="btn btn-primary"> Atualizar </button>
+                      <button className="btn btn-primary"> Atualizar Nome </button>
                     </Link>
                     <button style={{ marginLeft: '1em' }} className='btn btn-danger' onClick={() => this.context.deletarDeck(deck.id) && window.location.reload()}> Deletar </button>
                   </td>

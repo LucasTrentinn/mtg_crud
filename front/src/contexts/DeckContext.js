@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { api } from '../api'
 
-export const Context = createContext()
+export const ContextDeck = createContext()
 
 export default function DeckContext({children}) {
   const [decks, setDecks] = useState()
@@ -22,9 +22,9 @@ export default function DeckContext({children}) {
 
   return(
     <div>
-      <Context.Provider value={{decks, setDecks, consultarTodos, adicionarDeck, deletarDeck}}>
+      <ContextDeck.Provider value={{decks, setDecks, consultarTodos, adicionarDeck, deletarDeck}}>
         {children}
-      </Context.Provider>
+      </ContextDeck.Provider>
     </div>
   )
 

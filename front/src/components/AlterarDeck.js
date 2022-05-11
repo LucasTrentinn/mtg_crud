@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, CardBody, Col, Container, Form, FormGroup, Row } from "reactstrap";
 
-export default class Alterar extends Component {
+export default class AlterarDeck extends Component {
   render() {
     return (
       <div>
@@ -13,19 +14,13 @@ export default class Alterar extends Component {
                 <CardBody>
                   <Form>
                     <FormGroup style={{ padding: "1em" }}>
-                      <label>First Name:</label>
+                      <label>Novo nome:</label>
                       <input name="firstName" className='form-control'></input>
                     </FormGroup>
-                    <FormGroup style={{ padding: "1em" }}>
-                      <label>Last Name:</label>
-                      <input name="lastName" className='form-control'></input>
-                    </FormGroup>
-                    <FormGroup style={{ padding: "1em" }}>
-                      <label>Email ID:</label>
-                      <input name="emailId" className='form-control'></input>
-                    </FormGroup>
                     <Button color="success">Save</Button>
-                    <Button color="danger">Cancel</Button>
+                    <Link to='/'>
+                      <Button color="danger">Cancel</Button>
+                    </Link>
                   </Form>
                 </CardBody>
               </Col>

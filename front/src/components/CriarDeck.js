@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Button, Card, CardBody, Col, Container, Form, FormGroup, Row } from "reactstrap";
-import { Context } from "../contexts/DeckContext";
+import { ContextDeck } from "../contexts/DeckContext";
 import { Link } from 'react-router-dom'
 
-export default class Criar extends Component {
-  static contextType = Context;
+export default class CriarDeck extends Component {
+  static contextType = ContextDeck;
 
   componentDidMount() {
     this.context.consultarTodos()
