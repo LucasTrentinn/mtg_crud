@@ -4,13 +4,24 @@ import { Button, Row, Table } from "reactstrap";
 import { ContextCarta } from "../contexts/CartaContext";
 
 export default function ListaCartas() {
-  const { cartas, consultarTodos, deletarCarta } = useContext(ContextCarta)
+  const { cartas, consultarTodos, deletarCarta, sortAlfMaior, sortAlfMenor, sortPrecoMaior, sortPrecoMenor } = useContext(ContextCarta)
 
   let { deckID } = useParams()
 
   useEffect(() => {
     consultarTodos(deckID)
   }, [])
+
+  function handleChange(e) {
+    if (e.target.value === 'Alfabetico (A-Z)')
+      sortAlfMaior(deckID)
+    if (e.target.value === 'Alfabetico (Z-A)')
+      sortAlfMenor(deckID)
+    if (e.target.value === 'Preço (maior-menor)')
+      sortPrecoMaior(deckID)
+    if (e.target.value === 'Preço (menor-maior)')
+      sortPrecoMenor(deckID)
+  }
 
   if (!cartas)
     return (
@@ -19,10 +30,22 @@ export default function ListaCartas() {
   return (
     <div>
       <h2 className="text-center" style={{ padding: '1em' }}> Lista de Cartas </h2>
-      <div style={{ textAlign: 'left' }}>
-        <Link to={`/deck/${deckID}/criarCarta`}>
-          <Button className="btn btn-success"> Adicionar Carta </Button>
-        </Link>
+      <div className="row">
+        <div className="col" style={{ textAlign: 'left' }}>
+          <Link to={`/deck/${deckID}/criarCarta`}>
+            <Button className="btn btn-success"> Adicionar Carta </Button>
+          </Link>
+        </div>
+        <div className='col-2'>
+          Selecionar filtros:
+          <select className="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)} >
+            <option> Filtros </option>
+            <option> Alfabetico (A-Z) </option>
+            <option> Alfabetico (Z-A) </option>
+            <option> Preço (maior-menor) </option>
+            <option> Preço (menor-maior) </option>
+          </select>
+        </div>
       </div>
       <Row>
         <Table striped bordered responsive hover>

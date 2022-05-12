@@ -21,7 +21,7 @@ router.delete('/', async (req, res) => {
 
 
 router.get('/:id', async (req, res) => {
-  res.send(await Deck.findByPk(req.params.id))
+  res.send(await Deck.findByPk(req.params.id, {include: Carta}))
 })
 
 router.put('/:id', async (req, res) => {

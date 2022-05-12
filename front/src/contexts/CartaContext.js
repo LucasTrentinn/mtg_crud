@@ -29,9 +29,46 @@ export default function CartaContext({children}) {
     await api.delete(`/cartas/${id}`)
   }
 
+
+  const sortAlfMaior = async (deckid) => {
+    const res = await api.get('/cartas', {
+      params: {
+        id: deckid
+      }
+    })
+    setCartas([...res.data].sort((a,b)=>a.nome.localeCompare(b.nome)))
+  }
+
+  const sortAlfMenor = async (deckid) => {
+    const res = await api.get('/cartas', {
+      params: {
+        id: deckid
+      }
+    })
+    setCartas([...res.data].sort((a,b)=>a.nome.localeCompare(b.nome)).reverse())
+  }
+
+  const sortPrecoMenor = async (deckid) => {
+    const res = await api.get('/cartas', {
+      params: {
+        id: deckid
+      }
+    })
+    setCartas([...res.data].sort((a,b)=> a.preco - b.preco))
+  }
+
+  const sortPrecoMaior = async (deckid) => {
+    const res = await api.get('/cartas', {
+      params: {
+        id: deckid
+      }
+    })
+    setCartas([...res.data].sort((a,b)=> a.preco - b.preco).reverse())
+  }
+
   return(
     <div>
-      <ContextCarta.Provider value={{cartas, setCartas, consultarTodos, adicionarCarta, alterarCarta, deletarCarta}}>
+      <ContextCarta.Provider value={{cartas, setCartas, consultarTodos, sortAlfMaior, sortAlfMenor, sortPrecoMaior, sortPrecoMenor, adicionarCarta, alterarCarta, deletarCarta}}>
         {children}
       </ContextCarta.Provider>
     </div>
