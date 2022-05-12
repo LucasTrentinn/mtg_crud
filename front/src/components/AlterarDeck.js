@@ -11,6 +11,9 @@ export default function AlterarDeck() {
   let { deckID } = useParams()
 
   function handleClick() {
+    if(!nome)
+      return
+
     alterarDeck(deckID, nome)
   }
 

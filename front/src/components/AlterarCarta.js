@@ -13,6 +13,9 @@ export default function AlterarCarta() {
   let { deckID } = useParams()
 
   function handleClick() {
+    if(!preco && !qtd)
+      return
+
     alterarCarta(cartaID, preco, qtd)
   }
 
