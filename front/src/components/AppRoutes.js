@@ -11,10 +11,10 @@ export default function AppRoutes({ children }) {
     <Routes>
       <Route path='/' element={<ListaDeck />} />
       <Route path='/adicionarDeck' element={<CriarDeck />} />
-      <Route path='/alterarDeck' element={<AlterarDeck />} />
+      <Route path='/deck/:deckID/alterar' element={<AlterarDeck />} />
       <Route path='/deck/:deckID' element={<ListaCartas />} />
-      <Route path='/criarCarta' element={<CriarCarta />} />
-      <Route path='/alterarCarta' element={<AlterarCarta />} />
+      <Route path='/deck/:deckID/criarCarta' element={<CriarCarta />} />
+      <Route path='/deck/:deckID/alterarCarta/:cartaID' element={<AlterarCarta />} />
     </Routes>
   )
 }

@@ -41,7 +41,7 @@ export default class ListaDeck extends Component {
                     </Link>
                   </td>
                   <td>
-                    <Link to='/alterarDeck'>
+                    <Link to={`/deck/${deck.id}/alterar`}>
                       <button className="btn btn-primary"> Atualizar Nome </button>
                     </Link>
                     <button style={{ marginLeft: '1em' }} className='btn btn-danger' onClick={() => this.context.deletarDeck(deck.id) && window.location.reload()}> Deletar </button>
