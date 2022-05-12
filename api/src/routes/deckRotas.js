@@ -1,10 +1,10 @@
 // /deck
 const express = require('express')
-const { Deck } = require('../models')
+const { Deck, Carta } = require('../models')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  res.send(await Deck.findAll())
+  res.send(await Deck.findAll({ include: Carta }))
 })
 
 router.post('/', async (req, res) => {
