@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser =  require('body-parser')
 const { join } = require('path')
 const cors = require('cors')
-const porta = 3001
+const port = process.env.PORT || 3001
 
 
 // Rotas
@@ -25,7 +25,7 @@ app.use('/decks', decks)
 app.use('/cartas', cartas)
 
 sequelize.sync({logging:true}).then((value) => {
-  app.listen(porta, () => {
-    console.log(`Conectado à porta ${porta}.`)
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}.`)
   })
 })
