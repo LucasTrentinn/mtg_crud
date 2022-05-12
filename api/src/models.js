@@ -2,9 +2,14 @@ const {Sequelize, DataTypes} = require('sequelize')
 
 const sequelize = new Sequelize('sqlite:./db.sqlite');
 
-module.exports.User = sequelize.define('User', {
-  username: DataTypes.STRING,
-  birthday: DataTypes.DATE,
+const User = sequelize.define('User', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  email: DataTypes.STRING,
+  senha: DataTypes.STRING,
 });
 
  const Deck = sequelize.define('Deck', {
@@ -34,9 +39,14 @@ const Carta = sequelize.define('Carta', {
   quantidade: DataTypes.INTEGER.UNSIGNED
 })
 
+User.hasMany(Deck)
+Deck.belongsTo(User)
+
 Deck.hasMany(Carta)
 Carta.belongsTo(Deck)
 
+
+module.exports.User = User;
 module.exports.Carta = Carta;
-module.exports.Deck = Deck
+module.exports.Deck = Deck;
 module.exports.sequelize = sequelize
