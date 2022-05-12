@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, CardBody, Col, Container, Form, FormGroup, Row } from "reactstrap";
 import { ContextDeck } from "../contexts/DeckContext";
 import { Link } from 'react-router-dom'
@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom'
 export default function CriarDeck() {
   const { adicionarDeck } = useContext(ContextDeck)
 
-  let nomeInput = React.createRef()
+  const [nome, setNome] = useState()
 
   function handleClick() {
-    adicionarDeck(nomeInput.current.value)
+    if(!nome)
+      return
+
+    adicionarDeck(nome)
   }
 
   return (
@@ -23,7 +26,7 @@ export default function CriarDeck() {
                 <Form>
                   <FormGroup style={{ padding: "1em" }}>
                     <label>Nome do Deck:</label>
-                    <input type='text' name="nome" className='form-control' ref={nomeInput} required />
+                    <input type='text' name="nome" className='form-control' onChange={e => setNome(e.target.value)} required />
                   </FormGroup>
                   <Button type="submit" className="btn btn-success" onClick={() => handleClick()}>Salvar</Button>
                   <Link to='/'>
