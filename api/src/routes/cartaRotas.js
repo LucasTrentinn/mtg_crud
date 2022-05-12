@@ -1,10 +1,15 @@
 // /deck/:id
 const express = require('express')
-const { Carta } = require('../models')
+const { Carta, Deck } = require('../models')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  res.send(await Carta.findAll())
+  res.send(await Carta.findAll({
+    where: {
+      DeckId: req.query.id
+    }
+  }))
+  console.log(req.params)
 })
 
 router.post('/', async (req, res) => {
