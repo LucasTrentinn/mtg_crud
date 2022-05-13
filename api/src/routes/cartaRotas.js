@@ -1,4 +1,4 @@
-// /deck/:id
+// /cartas/:id
 const express = require('express')
 const { Carta, Deck } = require('../models')
 const router = express.Router()
