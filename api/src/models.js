@@ -1,6 +1,7 @@
 const {Sequelize, DataTypes} = require('sequelize')
+require('dotenv').config()
 
-const sequelize = new Sequelize('postgres://hdjqtfmc:vY95UFmzpD0swby2zvLg8X3yeZVCjyJl@kesavan.db.elephantsql.com/hdjqtfmc', {dialect: 'postgres'});
+const sequelize = new Sequelize(process.env.POSTGRES_LINK, {dialect: 'postgres'});
 
 const User = sequelize.define('User', {
   id: {
