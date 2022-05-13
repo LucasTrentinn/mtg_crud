@@ -1,6 +1,6 @@
 const {Sequelize, DataTypes} = require('sequelize')
 
-const sequelize = new Sequelize('sqlite:./db.sqlite');
+const sequelize = new Sequelize('postgres://hdjqtfmc:vY95UFmzpD0swby2zvLg8X3yeZVCjyJl@kesavan.db.elephantsql.com/hdjqtfmc', {dialect: 'postgres'});
 
 const User = sequelize.define('User', {
   id: {

@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
   if(user == null) {
     res.status(401).send('Usuário ou senha inválidos.')
   } else {
-    const token = jwt.sign({usuario_id: usuario.id}, process.env.SECRET)
+    const token = jwt.sign({usuario_id: usuario.id}, 'chavesecreta')
     res.send({usuario, token})
   }
 })
