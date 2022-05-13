@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
     res.status(401).send('Token não informado!')
 
   const token = req.headers.authorization.substring(4)
-  const verified = jwt.verify(token, 'chavesecreta')
+  const verified = jwt.verify(token, process.env.SECRET)
   req.usuario_id = verified.usuario_id
 
   next()

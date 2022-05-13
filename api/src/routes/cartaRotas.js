@@ -12,11 +12,11 @@ router.get('/', async (req, res) => {
   console.log(req.params)
 })
 
-router.post('/', async (req, res) => {
+router.post('/',  async (req, res) => {
   res.status(200).send(await Carta.create(req.body))
 })
 
-router.delete('/', async (req, res) => {
+router.delete('/',  async (req, res) => {
   await Carta.destroy({
     truncate: true,
     restartIdentity: true
@@ -29,14 +29,14 @@ router.get('/:id', async (req, res) => {
   res.send(await Carta.findByPk(req.params.id))
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id',  async (req, res) => {
   let carta = await Carta.findByPk(req.params.id)
   carta.set(req.body)
   await carta.save()
   res.send(carta)
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',  async (req, res) => {
   (await Carta.findByPk(req.params.id)).destroy()
   res.status(200).send('OK')
 })
